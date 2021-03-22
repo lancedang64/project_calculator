@@ -1,59 +1,61 @@
 'use strict'
 
-function add(a,b) {
-    return a + b;
-}
+const add = (a,b) => a + b;
+const subtract = (a,b) => a - b;
+const multiply = (a,b) => a * b;
+const divide = (a,b) => a / b;
 
-function subtract(a,b) {
-    return a - b;
-}
-
-function multiply(a,b) {
-    return a * b;
-}
-
-function divide(a,b) {
-    return a / b;
-}
-
-function numberSelect(e) {
-    const numberSelected = e.target.className.slice(2);
-    console.log(numberSelected);
-    if (operator == '') updateUI("updateFirstNo", numberSelected);
-    else updateUI("updateSecondNo", numberSelected);
-}
-
-function updateUI(func, string) {
-    switch (func) {
-        case "clear":
-            displayBar.textContent = '';
-            //un-highlight operator
+function operate(e) {
+    const userChoice = e.target.id;
+    switch (userChoice) {
+        case ("numberButton"):
+            storeNumber(e);
             break;
-        case "updateFirstNo":
-            firstNo = firstNo.concat(string);
-            displayBar.textContent = firstNo;
+        case ("operatorButton"):
+            storeOperator(e);
+            if (secondNo != '') calculateResult();
             break;
-        case "updateSecondNo":
-            secondNo = secondNo.concat(string);
-            displayBar.textContent = secondNo;
-            break;    
-        case "selectOperator":
-            //highlight operator
+        case ("equalButton"):
+            if (secondNo == '') secondNo = repeatNo;
+            calculateResult();
             break;
-        case "displayResult":
-            displayBar.textContent = result;
+        case ("clearButton"):
+            clearCalculator();
             break;
         default:
-            displayBar.textContent = "oops";
+            console.log("oops operate() error");
+    } 
+}
+
+function storeNumber(e) {
+    const numberSelected = e.target.className.slice(2);
+    if (operator == '') {
+        if (firstNo == '') {
+            firstNo = numberSelected;
+        } else {
+            firstNo = firstNo.concat(numberSelected);
+        }
+        updateDisplay(firstNo);
+    }
+    if (operator != '') {
+        if (secondNo == '') {
+            secondNo = numberSelected;
+        } else {
+            secondNo = secondNo.concat(numberSelected);
+        }
+        updateDisplay(secondNo);
     }
 }
 
-function operate(e) {
-    updateUI("selectOperator");
+function updateDisplay(text) {
+    displayBar.textContent = text;
+}
+
+function storeOperator(e) {
     operator = e.target.className;
 }
 
-function calculateTotal() {
+function calculateResult() {
     firstNo = parseInt(firstNo);
     secondNo = parseInt(secondNo);
 
@@ -70,41 +72,39 @@ function calculateTotal() {
         case "add":
             result = add(firstNo,secondNo);
             break;
+        case "":
+            firstNo = firstNo.toString();
+            secondNo = '';
+            return firstNo,secondNo;
         default:
-            console.log("oops calculateTotal() error");
+            console.log("oops calculateResult() error");
     }
-    updateUI('displayResult');
+    updateDisplay(result);
+    
+    firstNo = result;
+    repeatNo = secondNo;
     firstNo = firstNo.toString();
-    secondNo = secondNo.toString();
+    secondNo = '';
 }
 
 function clearCalculator(e) {
     displayBar.textContent = '';
     firstNo = '';
     secondNo = '';
-    operator = '';
     result = 0;
+    operator = '';
+    repeatNo = 0;
 }
 
-let operator = '';
 let firstNo = '';
 let secondNo = '';
 let result = 0;
+let repeatNo;
+let operator = '';
 
 const displayBar = document.querySelector("div.display");
 
-const numberButtons = document.querySelectorAll("button#numberButton");
-numberButtons.forEach(numberButton => {
-    numberButton.addEventListener("click", numberSelect);
+const operateButtons = document.querySelectorAll("button");
+operateButtons.forEach(operateButton => {
+    operateButton.addEventListener("click", operate);
 });
-
-const operatorButtons = document.querySelectorAll("button#operatorButton");
-operatorButtons.forEach(operatorButton => {
-    operatorButton.addEventListener("click", operate);
-});
-
-const clearButton = document.querySelector("button.clear");
-clearButton.addEventListener("click", clearCalculator);
-
-const equalButton = document.querySelector("button.equal");
-equalButton.addEventListener("click", calculateTotal);

@@ -21,33 +21,39 @@
 
 
 .grid-container {
-    width: 700px;
-    display: grid;
-    grid-template-areas: 
-        'display display display display'
-        'clear positiveNegative percentage divide'
-        'seven eigth nine multiply'
-        'four five six minus'
-        'one two three plus'
-        'zero zero dot equal';
-    grid-gap: 10px;
-    background-color: #091a16;
-    padding: 10px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 500px;
+  display: grid;
+  grid-template-areas: 
+      'display display display display'
+      'clear positiveNegative percentage divide'
+      'seven eigth nine multiply'
+      'four five six minus'
+      'one two three plus'
+      'zero zero dot equal';
+  grid-gap: 10px;
+  background-color: #091a16;
+  padding: 10px;
 }
 
 .grid-container > div {
-    background-color: #091a16;
-    text-align: end;
-    padding: 20px 0;
-    font-size: 65px;
-    height: 70px;
-    color: white;
-  }
+  background-color: #091a16;
+  text-align: end;
+  padding: 20px 0;
+  font-size: 65px;
+  height: 70px;
+  color: white;
+}
 
   .grid-container > button {
-    background-color: #8f8f8f;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
-    border-radius: 10%;
-  }
+  background-color: #8f8f8f;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  border-radius: 10%;
+}
