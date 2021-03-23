@@ -8,19 +8,22 @@ const divide = (a,b) => a / b;
 function operate(e) {
     const userChoice = e.target.id;
     switch (userChoice) {
-        case ("numberButton"):
+        case "number":
             storeNumber(e);
             break;
-        case ("operatorButton"):
-            storeOperator(e);
+        case "operator":
             if (secondNo != '') calculateResult();
+            storeOperator(e);
             break;
-        case ("equalButton"):
+        case "equal":
             if (secondNo == '') secondNo = repeatNo;
             calculateResult();
             break;
-        case ("clearButton"):
+        case "clear":
             clearCalculator();
+            break;
+        case "decimal":
+            storeDecimal();
             break;
         default:
             console.log("oops operate() error");
@@ -30,7 +33,7 @@ function operate(e) {
 function storeNumber(e) {
     const numberSelected = e.target.className.slice(2);
     if (operator == '') {
-        if (firstNo == '') {
+        if (firstNo == '' || firstNo == '0') {
             firstNo = numberSelected;
         } else {
             firstNo = firstNo.concat(numberSelected);
@@ -38,7 +41,7 @@ function storeNumber(e) {
         updateDisplay(firstNo);
     }
     if (operator != '') {
-        if (secondNo == '') {
+        if (secondNo == '' || secondNo == '0') {
             secondNo = numberSelected;
         } else {
             secondNo = secondNo.concat(numberSelected);
@@ -56,11 +59,18 @@ function storeOperator(e) {
 }
 
 function calculateResult() {
-    firstNo = parseInt(firstNo);
-    secondNo = parseInt(secondNo);
+    firstNo = parseFloat(firstNo);
+    secondNo = parseFloat(secondNo);
 
     switch (operator) {
         case "divide":
+            if (secondNo == 0) {
+                displayBar.textContent = "Can't divide by 0!"
+                firstNo = '';
+                secondNo = '';
+                operator = '';
+                return firstNo, secondNo, operator;
+            }
             result = divide(firstNo,secondNo);
             break;
         case "multiply":
@@ -79,13 +89,41 @@ function calculateResult() {
         default:
             console.log("oops calculateResult() error");
     }
-    updateDisplay(result);
+    updateDisplay(roundNumber(result,8));
     
     firstNo = result;
     repeatNo = secondNo;
     firstNo = firstNo.toString();
     secondNo = '';
 }
+
+function storeDecimal() {
+    if (secondNo == '') {
+        if (firstNo.includes('.')) return;
+        firstNo = firstNo.concat('.');
+        updateDisplay(firstNo);
+    }
+    if (firstNo != '' && secondNo != '') {
+        if (secondNo.includes('.')) return;
+        secondNo = secondNo.concat('.');
+        updateDisplay(secondNo);
+    }
+}
+
+//got from StackOverflow
+function roundNumber(num, scale) {
+    if(!("" + num).includes("e")) {
+      return +(Math.round(num + "e+" + scale)  + "e-" + scale);
+    } else {
+      var arr = ("" + num).split("e");
+      var sig = ""
+      if(+arr[1] + scale > 0) {
+        sig = "+";
+      }
+      return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
+    }
+  }
+
 
 function clearCalculator(e) {
     displayBar.textContent = '';
@@ -108,3 +146,10 @@ const operateButtons = document.querySelectorAll("button");
 operateButtons.forEach(operateButton => {
     operateButton.addEventListener("click", operate);
 });
+/*
+To-do list
+- Add click effect to buttons
+- add percentage operate switch case
+- add positiveNegative switch case
+- add backspace button at the All clear button
+*/

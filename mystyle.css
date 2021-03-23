@@ -19,6 +19,9 @@
 .dot { grid-area: dot;}
 .equal { grid-area: equal;}
 
+body {
+  background: #a79c88;
+}
 
 .grid-container {
   margin: 0;
@@ -37,12 +40,12 @@
       'one two three plus'
       'zero zero dot equal';
   grid-gap: 10px;
-  background-color: #091a16;
+  background-color: #575761;
   padding: 10px;
 }
 
 .grid-container > div {
-  background-color: #091a16;
+  background-color: #141414;
   text-align: end;
   padding: 20px 0;
   font-size: 65px;
@@ -51,9 +54,17 @@
 }
 
   .grid-container > button {
-  background-color: #8f8f8f;
+  background-color: #969696;
   text-align: center;
   padding: 20px 0;
   font-size: 30px;
   border-radius: 10%;
+}
+
+#operator, #equal {
+  background-color: #ffcb6b;
+}
+
+#number, #decimal {
+  background-color: #F8F7F9;
 }
