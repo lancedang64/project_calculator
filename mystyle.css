@@ -45,14 +45,15 @@ body {
   border-radius: 5%;
 }
 
-.grid-container > div {
+.display {
   background-color: #141414;
   text-align: end;
   padding: 20px 0;
-  font-size: 65px;
-  height: 70px;
+  font-size: 60px;
+  max-width: 500px;
+  min-height: 70px;
+  word-wrap: break-word;
   color: white;
-  text-overflow: ellipsis;
 } 
 
 .grid-container > button {
