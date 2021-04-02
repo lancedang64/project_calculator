@@ -8,5 +8,5 @@ Live preview at <to be created>
 The calculator is a replica of the Iphone's calculator app.
 
     Knowledge and technical skills used
-CSS
-Javascript
+- CSS
+- Javascript
