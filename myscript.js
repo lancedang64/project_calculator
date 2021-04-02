@@ -149,7 +149,9 @@ operateButtons.forEach(operateButton => {
 /*
 To-do list
 - Add click effect to buttons
-- add percentage operate switch case
-- add positiveNegative switch case
+- add percentage function
+- add positiveNegative functio,
 - add backspace button at the All clear button
+- fix big number overflowing the display
+- Add keyboard support
 */

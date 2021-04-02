@@ -53,7 +53,7 @@ body {
   color: white;
 }
 
-  .grid-container > button {
+.grid-container > button {
   background-color: #969696;
   text-align: center;
   padding: 20px 0;
@@ -67,4 +67,10 @@ body {
 
 #number, #decimal {
   background-color: #F8F7F9;
+}
+
+button:active {
+  background-color: #ec0f0f;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
