@@ -72,7 +72,7 @@ function calculateResult() {
         case "divide":
             if (secondNo == 0) {
                 displayBar.textContent = "Can't divide by 0!"
-                firstNo = '';
+                firstNo = '0'; //so it doesn't crash the calculator if user choose an operator afterward
                 secondNo = '';
                 operator = '';
                 return firstNo, secondNo, operator;
