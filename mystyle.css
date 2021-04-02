@@ -59,6 +59,7 @@ body {
   padding: 20px 0;
   font-size: 30px;
   border-radius: 10%;
+  transition: 0.3s;
 }
 
 #operator, #equal {
@@ -70,7 +71,8 @@ body {
 }
 
 button:active {
-  background-color: #ec0f0f;
+  background-color: #b8b8b8 !important;
   box-shadow: 0 5px #666;
+  opacity: 1;
   transform: translateY(4px);
 }
