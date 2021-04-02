@@ -41,7 +41,8 @@ body {
       'zero zero dot equal';
   grid-gap: 10px;
   background-color: #575761;
-  padding: 10px;
+  padding: 30px;
+  border-radius: 5%;
 }
 
 .grid-container > div {
@@ -51,6 +52,7 @@ body {
   font-size: 65px;
   height: 70px;
   color: white;
+  text-overflow: ellipsis;
 } 
 
 .grid-container > button {
