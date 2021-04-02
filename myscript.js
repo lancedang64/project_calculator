@@ -25,8 +25,11 @@ function operate(e) {
         case "decimal":
             storeDecimal();
             break;
+        case "percentage":
+            calculatePercentageOfNo();
+            break;
         default:
-            console.log("oops operate() error");
+            console.log("oops operate() error, event is", e);
     } 
 }
 
@@ -110,6 +113,23 @@ function storeDecimal() {
     }
 }
 
+function calculatePercentageOfNo() {
+    if (secondNo == '') {
+        firstNo = getPercentageOfString(firstNo);
+        updateDisplay(firstNo);
+    }
+    else if (secondNo != '') {
+        secondNo = getPercentageOfString(secondNo);
+        updateDisplay(secondNo);
+    }
+}
+
+function getPercentageOfString(stringNo) {
+    stringNo = parseFloat(stringNo) * 0.01;
+    const result = stringNo.toString();
+    return result;
+}
+
 //got from StackOverflow
 function roundNumber(num, scale) {
     if(!("" + num).includes("e")) {
@@ -148,7 +168,6 @@ operateButtons.forEach(operateButton => {
 });
 /*
 To-do list
-- add percentage function
 - add positiveNegative functio,
 - add backspace button at the All clear button
 - Add keyboard support
