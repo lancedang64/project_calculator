@@ -28,6 +28,9 @@ function operate(e) {
         case "percentage":
             calculatePercentageOfNo();
             break;
+        case "positiveNegative":
+            changePositiveNegativeSign();
+            break;
         default:
             console.log("oops operate() error, event is", e);
     } 
@@ -115,19 +118,24 @@ function storeDecimal() {
 
 function calculatePercentageOfNo() {
     if (secondNo == '') {
-        firstNo = getPercentageOfString(firstNo);
+        firstNo = (parseFloat(firstNo) * 0.01).toString();
         updateDisplay(firstNo);
     }
     else if (secondNo != '') {
-        secondNo = getPercentageOfString(secondNo);
+        secondNo = (parseFloat(secondNo) * 0.01).toString();
         updateDisplay(secondNo);
     }
 }
 
-function getPercentageOfString(stringNo) {
-    stringNo = parseFloat(stringNo) * 0.01;
-    const result = stringNo.toString();
-    return result;
+function changePositiveNegativeSign() {
+    if (secondNo == '') {
+        firstNo = (0 - parseFloat(firstNo)).toString();
+        updateDisplay(firstNo);
+    }
+    else if (secondNo != '') {
+        secondNo = (0 - parseFloat(secondNo)).toString();
+        updateDisplay(secondNo);
+    }
 }
 
 //got from StackOverflow
@@ -168,7 +176,6 @@ operateButtons.forEach(operateButton => {
 });
 /*
 To-do list
-- add positiveNegative functio,
 - add backspace button at the All clear button
 - Add keyboard support
 
