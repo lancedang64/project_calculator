@@ -42,18 +42,12 @@ function operate(e) {
 function storeNumber(e) {
     const numberSelected = e.target.className.slice(2);
     if (isFirstNoSelected()) {
-        if (firstNo == '' || firstNo == '0') {
-            firstNo = numberSelected;
-        } else {
-            firstNo = firstNo.concat(numberSelected);
-        }
+        if (firstNo == '' || firstNo == '0') firstNo = numberSelected;
+        else firstNo = firstNo.concat(numberSelected);
         updateDisplay(firstNo);
     } else {
-        if (secondNo == '' || secondNo == '0') {
-            secondNo = numberSelected;
-        } else {
-            secondNo = secondNo.concat(numberSelected);
-        }
+        if (secondNo == '' || secondNo == '0') secondNo = numberSelected;
+        else secondNo = secondNo.concat(numberSelected);
         updateDisplay(secondNo);
     }
 }
