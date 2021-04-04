@@ -16,7 +16,7 @@ function operate(e) {
             storeOperator(e);
             break;
         case "equal":
-            if (secondNo == '') secondNo = repeatNo;
+            if (secondNo == '') secondNo = repeatNo; // to repeat previous operator
             calculateResult();
             break;
         case "clear":
@@ -41,15 +41,14 @@ function operate(e) {
 
 function storeNumber(e) {
     const numberSelected = e.target.className.slice(2);
-    if (operator == '') {
+    if (isFirstNoSelected()) {
         if (firstNo == '' || firstNo == '0') {
             firstNo = numberSelected;
         } else {
             firstNo = firstNo.concat(numberSelected);
         }
         updateDisplay(firstNo);
-    }
-    if (operator != '') {
+    } else {
         if (secondNo == '' || secondNo == '0') {
             secondNo = numberSelected;
         } else {
@@ -96,7 +95,7 @@ function calculateResult() {
             secondNo = '';
             return firstNo,secondNo;
         default:
-            console.log("oops calculateResult() error");
+            console.log("oops calculateResult() error at", e);
     }
     updateDisplay(Number((result).toFixed(20)));
     
@@ -107,12 +106,11 @@ function calculateResult() {
 }
 
 function storeDecimal() {
-    if (secondNo == '') {
+    if (isFirstNoSelected()) {
         if (firstNo.includes('.')) return;
         firstNo = firstNo.concat('.');
         updateDisplay(firstNo);
-    }
-    if (firstNo != '' && secondNo != '') {
+    } else {
         if (secondNo.includes('.')) return;
         secondNo = secondNo.concat('.');
         updateDisplay(secondNo);
@@ -120,22 +118,20 @@ function storeDecimal() {
 }
 
 function calculatePercentageOfNo() {
-    if (secondNo == '') {
+    if (isFirstNoSelected()) {
         firstNo = (parseFloat(firstNo) * 0.01).toString();
         updateDisplay(firstNo);
-    }
-    else if (secondNo != '') {
+    } else {
         secondNo = (parseFloat(secondNo) * 0.01).toString();
         updateDisplay(secondNo);
     }
 }
 
 function changePositiveNegativeSign() {
-    if (secondNo == '') {
+    if (isFirstNoSelected()) {
         firstNo = (0 - parseFloat(firstNo)).toString();
         updateDisplay(firstNo);
-    }
-    else if (secondNo != '') {
+    } else {
         secondNo = (0 - parseFloat(secondNo)).toString();
         updateDisplay(secondNo);
     }
