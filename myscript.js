@@ -31,6 +31,9 @@ function operate(e) {
         case "positiveNegative":
             changePositiveNegativeSign();
             break;
+        case "backspace":
+            backspaceNumber();
+            break;
         default:
             console.log("oops operate() error, event is", e);
     } 
@@ -140,14 +143,30 @@ function changePositiveNegativeSign() {
 
 function clearCalculator(e) {
     displayBar.textContent = '';
-    firstNo = '';
+    firstNo = '0';
     secondNo = '';
     result = 0;
     operator = '';
     repeatNo = 0;
+    updateDisplay(firstNo);
 }
 
-let firstNo = '';
+function isFirstNoSelected() {
+    if (operator == '') return true;
+    else return false;
+}
+
+function backspaceNumber() {
+    if (isFirstNoSelected()) {
+        firstNo = firstNo.slice(0,-1);
+        updateDisplay(firstNo);
+    } else {
+        secondNo = secondNo.slice(0,-1);
+        updateDisplay(secondNo);
+    }
+}
+
+let firstNo = '0';
 let secondNo = '';
 let result = 0;
 let repeatNo;
@@ -159,10 +178,9 @@ const operateButtons = document.querySelectorAll("button");
 operateButtons.forEach(operateButton => {
     operateButton.addEventListener("click", operate);
 });
+
+updateDisplay(firstNo);
 /*
 To-do list
-- add backspace button at the All clear button
 - Add keyboard support
-
-- fix big number overflowing the display
 */

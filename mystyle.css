@@ -18,6 +18,7 @@
 .no0 { grid-area: zero;}
 .dot { grid-area: dot;}
 .equal { grid-area: equal;}
+.backspace {grid-area: backspace;}
 
 body {
   background: #a79c88;
@@ -38,7 +39,7 @@ body {
       'seven eigth nine multiply'
       'four five six minus'
       'one two three plus'
-      'zero zero dot equal';
+      'backspace zero dot equal';
   grid-gap: 10px;
   background-color: #575761;
   padding: 30px;
@@ -71,6 +72,10 @@ body {
 
 #number, #decimal {
   background-color: #F8F7F9;
+}
+
+#backspace {
+  background-color: #b96363;
 }
 
 button:active {
