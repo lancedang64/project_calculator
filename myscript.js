@@ -147,6 +147,7 @@ function isFirstNoSelected() {
 }
 
 function backspaceNumber() {
+    if (result != 0) return;
     if (isFirstNoSelected()) {
         if (firstNo == '0' || firstNo.length == 1) firstNo = '0';
         else firstNo = firstNo.slice(0,-1);
