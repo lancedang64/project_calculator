@@ -148,10 +148,12 @@ function isFirstNoSelected() {
 
 function backspaceNumber() {
     if (isFirstNoSelected()) {
-        firstNo = firstNo.slice(0,-1);
+        if (firstNo == '0' || firstNo.length == 1) firstNo = '0';
+        else firstNo = firstNo.slice(0,-1);
         updateDisplay(firstNo);
     } else {
-        secondNo = secondNo.slice(0,-1);
+        if (secondNo == '0' || secondNo.length == 1) secondNo = '0';
+        else secondNo = secondNo.slice(0,-1);
         updateDisplay(secondNo);
     }
 }
