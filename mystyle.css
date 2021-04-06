@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Digital-7';
+  src: url('Digital-7.woff2') format('woff2'),
+      url('Digital-7.woff') format('woff'),
+      url('digital-7.regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .display { grid-area: display;}
 .clear { grid-area: clear;}
 .positiveNegative { grid-area: positiveNegative;}
@@ -50,11 +60,13 @@ body {
   background-color: #141414;
   text-align: end;
   padding: 20px 0;
-  font-size: 60px;
+  font-family: 'Digital-7';
+  font-size: 80px;
   max-width: 500px;
   min-height: 70px;
   word-wrap: break-word;
   color: white;
+  line-height: 80%;
 } 
 
 .grid-container > button {
